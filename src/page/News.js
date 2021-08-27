@@ -1,26 +1,39 @@
 import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import { getNews, getNewsQueryOptions } from "../services/getNews";
 
 export default function News(props) {
-  const { articles } = props;
+  // const { articles } = props;
+  const { currentSearch, country, category } = props;
   const { newsId } = useParams();
-  const { title, urlToImage, publishedAt, description, author, content, url } =
-    articles[newsId];
 
-  console.log(articles);
+  // console.log(country);
+  // console.log(category);
+  const { isLoading, isError, data, error } = useQuery(
+    ["homeNews", currentSearch, country, category],
+    () => getNews(currentSearch, country, category),
+    getNewsQueryOptions
+  );
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
+  // console.log(data.articles[newsId]);
+
+  const { title, urlToImage, publishedAt, description, author, content, url } =
+    data.articles[newsId];
 
   return (
     <div className="newsDetail">
-      <strong className="d-inline-block mb-3 text-primary">{author}</strong>
+      <strong>{author}</strong>
 
-      <a
-        target="_blank"
-        className="text-decoration-none"
-        href={url}
-        rel="noreferrer"
-      >
+      <a target="_blank" href={url} rel="noreferrer">
         <h1>{title}</h1>
       </a>
-      <div className="mb-3 mt-3 text-muted">
+      <div style={{ margin: "20px 0" }}>
         Fecha de publicación: {publishedAt}
       </div>
 

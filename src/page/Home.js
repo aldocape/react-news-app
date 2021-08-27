@@ -1,58 +1,99 @@
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+import { getNews, getNewsQueryOptions } from "../services/getNews";
+
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 285,
+  },
+  media: {
+    height: 140,
+  },
+  title: {
+    margin: 10,
+  },
+});
 
 export default function Home(props) {
-  const { news } = props;
-  let x = 0;
-  if (props.column === "2") {
-    x = 10;
+  const { currentSearch, country, category } = props;
+  const classes = useStyles();
+  // console.log('Rendering home');
+  // console.log(searchText);
+  const { isLoading, isError, data, error } = useQuery(
+    ["homeNews"],
+    () => getNews(currentSearch, country, category),
+    getNewsQueryOptions
+  );
+
+  if (isLoading) {
+    // return <span>Loading...</span>;
+    return <span></span>;
   }
-  return (
-    <div className="col-5">
-      <ul className="list-unstyled m-3">
-        {news.map((e, i) => {
-          return (
-            <li key={e.url} className="card mt-4 mb-4 p-3">
-              <strong className="d-inline-block mb-3 text-primary">
-                {e.author}
-              </strong>
-              <Link
-                to={`/news/${i + x}`}
-                className="nav-link p-0 mb-3 text-justified"
+
+  console.log(data);
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
+
+  // const { news, currentSearch } = props;
+
+  return data.status === "error" ? (
+    <ul className="newsList">
+      <li>{data.message}</li>
+    </ul>
+  ) : (
+    <ul className="newsList">
+      {data.articles.map((e, i) => (
+        <li key={e.url}>
+          <Card className={classes.root}>
+            <CardActionArea>
+              <Typography
+                className={classes.title}
+                color="textSecondary"
+                gutterBottom
               >
-                <h3>{e.title}</h3>
+                {e.author}
+              </Typography>
+              <Link to={`/news/${i}`}>
+                <CardMedia
+                  className={classes.media}
+                  image={e.urlToImage ? e.urlToImage : "./no-image.png"}
+                  title={e.urlToImage}
+                  alt={e.urlToImage}
+                />
               </Link>
-              <img src={e.urlToImage} alt={e.urlToImage} />
-              <div className="mb-3 mt-3 text-muted">
-                Fecha de publicación: {e.publishedAt}
-              </div>
-              <p className="text-justified">{e.description}</p>
-            </li>
-          );
-        })}
-        {props.column === "1" ? (
-          <li key="coco" className="card mt-4 mb-4 p-3">
-            <strong className="d-inline-block mb-3 text-primary">
-              Liga de la Justicia
-            </strong>
-            <Link to="/news/" className="nav-link p-0 mb-3 text-justified">
-              <h3>
-                Último momento!! El Capitán Coco nuevamente salva el planeta con
-                sus superpoderes!
-              </h3>
-            </Link>
-            <img src="../../coco.gif" alt="coco" />
-            <div className="mb-3 mt-3 text-muted">
-              Fecha de publicación: 9 de agosto de 2021
-            </div>
-            <p className="text-justified">
-              Haciendo uso de sus habilidades extraordinarias, en esta ocasión
-              impidió que un asteroide impactara contra la Tierra
-            </p>
-          </li>
-        ) : (
-          ""
-        )}
-      </ul>
-    </div>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  <Link to={`/news/${i}`}>{e.title}</Link>
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {e.description}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button size="small" color="primary">
+                Compartir
+              </Button>
+              <Link to={`/news/${i}`}>
+                <Button size="small" color="primary">
+                  Seguir leyendo...
+                </Button>
+              </Link>
+            </CardActions>
+          </Card>
+        </li>
+      ))}
+    </ul>
   );
 }
