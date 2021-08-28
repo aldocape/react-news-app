@@ -60,7 +60,7 @@ export default function Selectors(props) {
                 
                 </Select>
             </FormControl>
-            <FormControl style={{margin: '25px 0 0 9px'}}>
+            {/* <FormControl style={{margin: '25px 0 0 9px'}}>
                 <Button color="primary" variant="contained" onClick={() => {
                     setNewsList([]);
                     const countrySelector = document.getElementById("countrySelector");
@@ -71,7 +71,7 @@ export default function Selectors(props) {
                 }} >
                     Buscar
                 </Button>
-            </FormControl>
+            </FormControl> */}
         </div>
     );
 }

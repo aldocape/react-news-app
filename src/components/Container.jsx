@@ -28,7 +28,7 @@ const styles = makeStyles(theme => ({
 
 const Container = () => {
 
-    const [newsList, setNewsList] = useState([]);
+    // const [newsList, setNewsList] = useState([]);
     const [country, setCountry] = useState("ar");
     const [category, setCategory] = useState("politics");
     const [isLoading, setisLoading] = useState(false);
@@ -131,7 +131,7 @@ const Container = () => {
                     <div className="container">
                         <div className="leftPanel">
                             
-                            <Selectors country={country} setCountry={setCountry} category={category} setCategory={setCategory} setNewsList={setNewsList} setisLoading={setisLoading} />
+                            <Selectors country={country} setCountry={setCountry} category={category} setCategory={setCategory} setisLoading={setisLoading} />
                             <Home country={country} category={category} currentSearch={currentSearch} />
 
                         </div>

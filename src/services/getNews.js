@@ -23,17 +23,32 @@ export async function getNews(searchText, ...todo) {
     country = todo[0];
     category = todo[1];
   }
-  //https://newsapi.org/v2/top-headlines?country=us&category=business&
-  let url = `${API_BASE_URL}/top-headlines?country=${country}&category=${category}&apiKey=${API_KEY}`;
+
+  let query =
+    "https://gnews.io/api/v4/top-headlines?&token=559cf4be7f55ec0007a27d64101d2444&country=us";
   if (searchText) {
-    url = `${API_BASE_URL}/everything?q=${searchText}&sortBy=date&apiKey=${API_KEY}`;
+    query = `https://gnews.io/api/v4/search?q=${searchText}&token=559cf4be7f55ec0007a27d64101d2444`;
   }
-  console.log(url);
-  return fetch(url)
+
+  return fetch(query, {
+    method: "GET",
+  })
     .then((data) => {
       return data.json();
     })
     .catch((e) => console.error(e));
+
+  //https://newsapi.org/v2/top-headlines?country=us&category=business&
+  // let url = `${API_BASE_URL}/top-headlines?country=${country}&category=${category}&apiKey=${API_KEY}`;
+  // if (searchText) {
+  //   url = `${API_BASE_URL}/top-headlines?q=${searchText}&country=${country}&category=${category}&apiKey=${API_KEY}`;
+  // }
+  // console.log(url);
+  // return fetch(url)
+  //   .then((data) => {
+  //     return data.json();
+  //   })
+  //   .catch((e) => console.error(e));
 }
 
 export function getNewsQueryOptions() {

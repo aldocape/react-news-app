@@ -29,10 +29,12 @@ export default function Home(props) {
   // console.log('Rendering home');
   // console.log(searchText);
   const { isLoading, isError, data, error } = useQuery(
-    ["homeNews"],
+    ["homeNews", currentSearch, country, category],
     () => getNews(currentSearch, country, category),
     getNewsQueryOptions
   );
+
+  console.log(data);
 
   if (isLoading) {
     // return <span>Loading...</span>;
@@ -67,9 +69,9 @@ export default function Home(props) {
               <Link to={`/news/${i}`}>
                 <CardMedia
                   className={classes.media}
-                  image={e.urlToImage ? e.urlToImage : "./no-image.png"}
-                  title={e.urlToImage}
-                  alt={e.urlToImage}
+                  image={e.image ? e.image : "./no-image.png"}
+                  title={e.url}
+                  alt={e.url}
                 />
               </Link>
               <CardContent>
