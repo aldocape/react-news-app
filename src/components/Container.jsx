@@ -29,8 +29,8 @@ const styles = makeStyles(theme => ({
 const Container = () => {
 
     // const [newsList, setNewsList] = useState([]);
-    const [country, setCountry] = useState("ar");
-    const [category, setCategory] = useState("politics");
+    const [country, setCountry] = useState("us");
+    const [category, setCategory] = useState("general");
     const [isLoading, setisLoading] = useState(false);
     const [currentSearch, setcurrentSearch] = useState("");
     const [userData, setuserData] = useState(null);

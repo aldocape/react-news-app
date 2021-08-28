@@ -34,9 +34,9 @@ export default function Selectors(props) {
                 }}
                 >
                 {/* <option aria-label="None" value="" /> */}
+                <option value="us">Estados Unidos</option>
                 <option value="ar">Argentina</option>
                 <option value="br">Brasil</option>
-                <option value="us">Estados Unidos</option>
                 <option value="it">Italia</option>
                 </Select>
             </FormControl>
@@ -54,7 +54,8 @@ export default function Selectors(props) {
                 }}
                 >
                 {/* <option aria-label="None" value="" /> */}
-                <option value="politics">Política</option>
+                <option value="Todas">Todas</option>
+                <option value="general">General</option>
                 <option value="sports">Deportes</option>
                 <option value="business">Economía</option>
                 

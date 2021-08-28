@@ -55,7 +55,7 @@ export default function Home(props) {
     </ul>
   ) : (
     <ul className="newsList">
-      {data.articles.map((e, i) => (
+      {data.data.map((e, i) => (
         <li key={e.url}>
           <Card className={classes.root}>
             <CardActionArea>
