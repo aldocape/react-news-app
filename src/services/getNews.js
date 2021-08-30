@@ -10,35 +10,55 @@
 //     .catch((e) => console.error(e));
 // }
 
-const API_KEY = "2da01aeea7ac496ba6283a2ffda45116";
-const API_BASE_URL = "https://newsapi.org/v2";
+const API_KEY = "e6ff51ae40msh31d44bb7cec9ff0p1d4af9jsn37e17f435457";
+const API_BASE_URL = "https://contextualwebsearch-websearch-v1.p.rapidapi.com";
 // const country = "AR";
 // const category = "business";
 
-let country = "us";
-let category = "general";
+// let country = "us";
+// let category = "general";
 export async function getNews(searchText, ...todo) {
-  console.log(todo);
-  if (todo.length > 0) {
-    country = todo[0];
-    category = todo[1];
-  }
+  // console.log(todo);
+  // if (todo.length > 0) {
+  //   country = todo[0];
+  //   category = todo[1];
+  // }
 
   if (searchText) {
-    searchText = `&keywords=${searchText}`;
-  }
-  category = category === "Todas" ? "" : category;
+    searchText = `${searchText}`;
+  } else searchText = `Argentina`;
+  // category = category === "Todas" ? "" : category;
 
-  let query2 = "";
-  if (category.length > 0) query2 = `&categories=${category}`;
+  // let query2 = "";
+  // if (category.length > 0) query2 = `&categories=${category}`;
 
-  let query = `http://api.mediastack.com/v1/news?access_key=e576dfb414690307364c246207edcbc5&countries=ar${searchText}${query2}&countries=${country}`;
+  // let query = `http://api.mediastack.com/v1/news?access_key=e576dfb414690307364c246207edcbc5&countries=ar${searchText}${query2}&countries=${country}`;
   // if (searchText) {
   //   query = `https://gnews.io/api/v4/search?q=${searchText}&token=559cf4be7f55ec0007a27d64101d2444`;
   // }
 
+  let query = `${API_BASE_URL}/api/search/NewsSearchAPI?q=${searchText}&pageNumber=1&pageSize=10&autoCorrect=true&withThumbnails=true&fromPublishedDate=null&toPublishedDate=null`;
+
+  // fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?q=Alberto%20Fernandez&pageNumber=1&pageSize=10&autoCorrect=true&withThumbnails=true&fromPublishedDate=null&toPublishedDate=null", {
+  //   "method": "GET",
+  //   "headers": {
+  //     "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com",
+  //     "x-rapidapi-key": "e6ff51ae40msh31d44bb7cec9ff0p1d4af9jsn37e17f435457"
+  //   }
+  // })
+  // .then(response => {
+  //   console.log(response);
+  // })
+  // .catch(err => {
+  //   console.error(err);
+  // });
+
   return fetch(query, {
     method: "GET",
+    headers: {
+      "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com",
+      "x-rapidapi-key": API_KEY,
+    },
   })
     .then((data) => {
       return data.json();

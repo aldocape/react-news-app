@@ -41,7 +41,7 @@ export default function Home(props) {
     return <span></span>;
   }
 
-  console.log(data);
+  console.log(data.value);
 
   if (isError) {
     return <span>Error: {error.message}</span>;
@@ -55,8 +55,8 @@ export default function Home(props) {
     </ul>
   ) : (
     <ul className="newsList">
-      {data.data.map((e, i) => (
-        <li key={e.url}>
+      {data.value.map((e, i) => (
+        <li key={e.id}>
           <Card className={classes.root}>
             <CardActionArea>
               <Typography
@@ -64,14 +64,14 @@ export default function Home(props) {
                 color="textSecondary"
                 gutterBottom
               >
-                {e.author}
+                Noticia nº {i}
               </Typography>
               <Link to={`/news/${i}`}>
                 <CardMedia
                   className={classes.media}
-                  image={e.image ? e.image : "./no-image.png"}
-                  title={e.url}
-                  alt={e.url}
+                  image={e.image.url ? e.image.url : "./no-image.png"}
+                  title={e.image.url}
+                  alt={e.image.url}
                 />
               </Link>
               <CardContent>
