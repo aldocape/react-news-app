@@ -1,6 +1,12 @@
-import InputLabel from '@material-ui/core/InputLabel';
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
 import { Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,66 +19,85 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  withMargin: {
+    marginLeft:20,
+    marginRight: 20,
+  },
 }));
 
 export default function Selectors(props) {
-    const classes = useStyles();
-    const { country, setCountry, category, setCategory, setNewsList, setisLoading } = props;
-    return (
 
-        <div className="formContainer">
-            <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel htmlFor="countrySelector">País</InputLabel>
-                <Select
-                native
-                value={country}
-                onChange={() => { const countrySelector = document.getElementById("countrySelector"); setCountry(countrySelector.value); }}
-                label="countrySelector"
-                inputProps={{
-                  name: 'countrySelector',
-                  id: 'countrySelector',
+  const {selectedDateFrom, setSelectedDateFrom, selectedDateTo, setSelectedDateTo, isLoading, setisLoading, setNewsList } = props;
+
+  const handleDateChangeFrom = (date) => {
+    if(!isLoading) setSelectedDateFrom(date);
+  };
+
+  const handleDateChangeTo = (date) => {
+    if(!isLoading) setSelectedDateTo(date);
+  };
+  
+  const classes = useStyles();
+
+  return (
+
+      <div className="formContainer">
+
+        <Grid container justifyContent="flex-start">            
+
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+              <KeyboardDatePicker
+              className={classes.withMargin}
+                disableToolbar
+                variant="inline"
+                format="dd/MM/yyyy"
+                margin="normal"
+                id="date-picker-from"
+                label="Fecha desde:"
+                value={selectedDateFrom}
+                onChange={handleDateChangeFrom}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
                 }}
-                >
-                {/* <option aria-label="None" value="" /> */}
-                <option value="us">Estados Unidos</option>
-                <option value="ar">Argentina</option>
-                <option value="br">Brasil</option>
-                <option value="it">Italia</option>
-                </Select>
-            </FormControl>
-            
-            <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel htmlFor="categorySelector">Categoría</InputLabel>
-                <Select
-                native
-                value={category}
-                onChange={() => { const categorySelector = document.getElementById("catSelector"); setCategory(categorySelector.value); }}
-                label="categorySelector"
-                inputProps={{
-                  name: 'categorySelector',
-                  id: 'catSelector',
-                }}
-                >
-                {/* <option aria-label="None" value="" /> */}
-                <option value="Todas">Todas</option>
-                <option value="general">General</option>
-                <option value="sports">Deportes</option>
-                <option value="business">Economía</option>
-                
-                </Select>
-            </FormControl>
-            {/* <FormControl style={{margin: '25px 0 0 9px'}}>
+              />
+
+              <KeyboardDatePicker
+              className={classes.withMargin}
+                        disableToolbar
+                        variant="inline"
+                        format="dd/MM/yyyy"
+                        margin="normal"
+                        id="date-picker-to"
+                        label="Fecha hasta:"
+                        value={selectedDateTo}
+                        onChange={handleDateChangeTo}
+                        KeyboardButtonProps={{
+                          'aria-label': 'change date',
+                        }}
+                      />
+        
+              <FormControl style={{margin: '25px 0 0 20px'}}>
                 <Button color="primary" variant="contained" onClick={() => {
                     setNewsList([]);
-                    const countrySelector = document.getElementById("countrySelector");
-                    const categorySelector = document.getElementById("catSelector");
-                    setCountry(countrySelector.value);
-                    setCategory(categorySelector.value);
                     setisLoading(true);
+                    const datePickerFrom = document.getElementById("date-picker-from");
+                    const datePickerTo = document.getElementById("date-picker-to");
+
+                    let fechaDesde = new Date(datePickerFrom.value.substring(6, 10) + "-" + datePickerFrom.value.substring(3, 5) + "-" + datePickerFrom.value.substring(0, 2) + " 00:00:00");
+                    let fechaHasta = new Date(datePickerTo.value.substring(6, 10) + "-" + datePickerTo.value.substring(3, 5) + "-" + datePickerTo.value.substring(0, 2) + " 00:00:00");
+
+                    setSelectedDateFrom(fechaDesde);
+                    setSelectedDateTo(fechaHasta);
                 }} >
                     Buscar
                 </Button>
-            </FormControl> */}
-        </div>
+              </FormControl>
+      
+          </MuiPickersUtilsProvider>
+
+        </Grid>
+        
+      </div> 
     );
 }

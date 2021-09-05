@@ -1,0 +1,115 @@
+{
+    "titulo": "4 septiembre",
+    "horoscopo": {
+        "aries": {
+            "nombre": "Aries",
+            "fechaSigno": "21 de marzo al 20 de abril",
+            "amor": "Involucrarse en temas de otra pareja no est\u00e1 bien y menos cuando su propia relaci\u00f3n no ha estado del todo bien.",
+            "salud": "Le recomiendo controlar los vicios. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "Es recomendable que no gaste m\u00e1s de la cuenta esta primera quincena.",
+            "color": "Amarillo.",
+            "numero": "2."
+        },
+        "tauro": {
+            "nombre": "Tauro",
+            "fechaSigno": "21 de abril al 20 de mayo",
+            "amor": "Las personas que le quieren necesitan m\u00e1s de usted.",
+            "salud": "Por favor evite exponerse m\u00e1s de la cuenta, ya que no solo se arriesga usted sino tambi\u00e9n a los suyos. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "No recurra a los pr\u00e9stamos para financiarse este mes, no es recomendable.",
+            "color": "Marengo.",
+            "numero": "1."
+        },
+        "geminis": {
+            "nombre": "G\u00e9minis",
+            "fechaSigno": "21 de mayo al 21 de junio",
+            "amor": "La esperanza nunca se debe perder ya que si es as\u00ed se perder\u00eda la esencia de ser humano.",
+            "salud": "Malestares estomacales. Cu\u00eddese. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "P\u00f3ngale m\u00e1s empe\u00f1o durante este mes de septiembre ya que los gastos que vienen m\u00e1s adelante ser\u00e1n considerables.",
+            "color": "Violeta.",
+            "numero": "3."
+        },
+        "cancer": {
+            "nombre": "C\u00e1ncer",
+            "fechaSigno": "22 de junio al 22 de julio",
+            "amor": "No malgaste el tiempo en discusiones que a fin de cuentas solo terminan por generar distancia.",
+            "salud": "Las tensiones molestar\u00e1n un poco. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "No es el momento para realizar cambios en su trabajo ya que las cosas no est\u00e1n espectaculares.",
+            "color": "Lila.",
+            "numero": "13."
+        },
+        "leo": {
+            "nombre": "Leo",
+            "fechaSigno": "23 de julio al 22 de agosto",
+            "amor": "No olvide que la familia es el principal pilar que tiene para salir adelante.",
+            "salud": "Su salud depender\u00e1 de su conducta. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "No se sienta amedrentado\/a por ninguna persona, ni menos permita que un tercero le diga que no puede lograr alg\u00fan objetivo.",
+            "color": "Azul.",
+            "numero": "29."
+        },
+        "virgo": {
+            "nombre": "Virgo",
+            "fechaSigno": "23 de agosto al 22 de septiembre",
+            "amor": "A\u00fan est\u00e1 a tiempo de mejorar la relaci\u00f3n y para esto lo importante es comunicarse, pero por sobre todo amar a la pareja.",
+            "salud": "Si no cambia de estimo de vida la salud dif\u00edcilmente mejorar\u00e1. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "No se conf\u00ede por tener un buen trabajo, acomp\u00e1\u00f1elo con esfuerzo.",
+            "color": "Crema.",
+            "numero": "9."
+        },
+        "libra": {
+            "nombre": "Libra",
+            "fechaSigno": "23 de septiembre al 22 de octubre",
+            "amor": "No hay que desesperar cuando la vida se pone compleja.",
+            "salud": "Evite el alcohol lo que m\u00e1s pueda. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "Tenga mucho cuidado con las decisiones que toma, la prudencia ayudar\u00e1 a que el inicio de mes no se le escape de las manos.",
+            "color": "Burdeo.",
+            "numero": "19."
+        },
+        "escorpion": {
+            "nombre": "Escorpi\u00f3n",
+            "fechaSigno": "23 de octubre al 22 de noviembre",
+            "amor": "Un cambio de actitud puede ayudar a mejorar todo, pero h\u00e1galo teniendo el real deseo de hacerlo.",
+            "salud": "Las alteraciones perjudican bastante su recuperaci\u00f3n. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "Si mantiene la constancia muy pronto podr\u00e1 cantar victoria.",
+            "color": "Salm\u00f3n.",
+            "numero": "5."
+        },
+        "sagitario": {
+            "nombre": "Sagitario",
+            "fechaSigno": "23 de noviembre al 20 de diciembre",
+            "amor": "Cuidado con los juegos que pueden costar muy caro. Valore lo que tiene y a quienes tiene al lado.",
+            "salud": "No se haga atado por las cosas que no puede controlar. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "Ponga el hombro en todo momento ya que nunca se sabe a qui\u00e9n podemos tener al lado.",
+            "color": "Naranjo.",
+            "numero": "26."
+        },
+        "capricornio": {
+            "nombre": "Capricornio",
+            "fechaSigno": "21 de diciembre al 20 de enero",
+            "amor": "No siempre hay que escuchar lo que otras personas dicen ya que puede haber una segunda intenci\u00f3n.",
+            "salud": "Las molestias lumbares pueden atacar esta jornada, tenga cuidado. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "No debe angustiarse, las cosas se ir\u00e1n dando para usted.",
+            "color": "Verde.",
+            "numero": "10."
+        },
+        "acuario": {
+            "nombre": "Acuario",
+            "fechaSigno": "21 de enero al 19 de febrero",
+            "amor": "Hay que tener cuidado con las actitudes que puedan generar un poco de desconfianza con la pareja.",
+            "salud": "Si el estr\u00e9s termina por ganar terreno puede terminar colapsando, cuidado. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "M\u00e1s cuidado con el patrimonio familiar.",
+            "color": "Caf\u00e9.",
+            "numero": "10."
+        },
+        "piscis": {
+            "nombre": "Piscis",
+            "fechaSigno": "20 de febrero al 20 de marzo",
+            "amor": "Cuando se conquista no se debe dejar ning\u00fan detalle al azar y menos cuando esa persona no es f\u00e1cil de convencer.",
+            "salud": "Cuidado con el consumo de alcohol. Qu\u00e9date en casa y l\u00e1vate bien las manos. Cuidemos juntos la salud de tod@s.",
+            "dinero": "Procure que le quede dinero para este mes, no se ponga a gastar a manos llenas.",
+            "color": "Granate.",
+            "numero": "30."
+        }
+    },
+    "fuente": "http:\/\/www.login.cl\/horoscopo",
+    "autor": "Yolanda Sultana"
+}

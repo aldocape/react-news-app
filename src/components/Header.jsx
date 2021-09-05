@@ -1,20 +1,18 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, alpha, makeStyles, IconButton } from "@material-ui/core";
+import clsx from 'clsx';
+import { AppBar, Toolbar, Typography, alpha, makeStyles, IconButton, Hidden } from "@material-ui/core";
 
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import LoginButton from './LoginButton';
 
-const drawerWidth = 315;
+const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
   offset: theme.mixins.toolbar,  
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none'
-    }
   },
   title: {
     flexGrow: 1
@@ -56,34 +54,59 @@ const useStyles = makeStyles(theme => ({
       width: '20ch',
     },
   },
+
   appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth
-    }
-  }
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+
+
 }));
 
 export default function Header(props) {
   const classes = useStyles();
-  const {currentSearch, setcurrentSearch, userData, setuserData} = props;
+  const {currentSearch, setcurrentSearch, userData, setuserData, open, handleDrawerOpen} = props;
 
   return (
     <header className="App-header">
       
-        <AppBar position="fixed" color="primary" className={classes.appBar} >
+        <AppBar position="fixed" color="primary" className={clsx(classes.appBar, { [classes.appBarShift]: open  })} >
           <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            ><MenuIcon /></IconButton>
 
-            <IconButton 
-            color="inherit" 
-            aria-label="menu" 
-            className={classes.menuButton}
-            onClick={() => props.openAction()}>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}> API de Noticias
-              {/* <img src="./logo.png" alt="logo" /> */}
-            </Typography>
+            <Hidden xsDown>
+  
+              <Typography variant="h6" className={classes.title}> Las Últimas Noticias</Typography>
+              
+            </Hidden>
+            
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />

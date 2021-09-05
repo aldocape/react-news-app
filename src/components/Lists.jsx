@@ -12,7 +12,14 @@ const Lists = (props) => {
         <div>
             <List component='nav'>
                 <Link to='/'>
-                    <ListItem button onClick={() => {props.setcurrentSearch ("")}}>
+                    <ListItem button onClick={() => 
+                    {   
+                        props.setNewsList([]);
+                        props.setisLoading(true);
+                        props.setcurrentSearch ("Argentina");
+                        props.setSelectedDateFrom(new Date()); 
+                        props.setSelectedDateFrom(new Date()); 
+                    }}>
                         <ListItemIcon>
                             <DvrIcon />
                         </ListItemIcon>

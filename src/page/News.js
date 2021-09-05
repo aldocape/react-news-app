@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import { getNews, getNewsQueryOptions } from "../services/getNews";
+import { getNews } from "../services/getNews";
 
 export default function News(props) {
   // const { articles } = props;
@@ -11,8 +11,7 @@ export default function News(props) {
   // console.log(category);
   const { isLoading, isError, data, error } = useQuery(
     ["homeNews", currentSearch, country, category],
-    () => getNews(currentSearch, country, category),
-    getNewsQueryOptions
+    () => getNews(currentSearch, country, category)
   );
   if (isLoading) {
     return <span>Loading...</span>;
