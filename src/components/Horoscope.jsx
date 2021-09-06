@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { getHoroscope } from '../services/getHoroscope';
 
-import horoscope from '../data/horoscope.json';
+// import horoscope from '../data/horoscope.json';
 
 const Horoscope = () => {
 
@@ -11,7 +11,7 @@ const Horoscope = () => {
     const signos = ['aries', 'tauro', 'geminis', 'cancer', 'leo', 'virgo', 'libra', 'sagitario', 'capricornio', 'acuario', 'piscis'];
 
     // console.log(horoscope.horoscopo);
-    const horoscopo = horoscope.horoscopo;
+    // const horoscopo = horoscope.horoscopo;
 
     useEffect(() => {
         if (isLoading) {
@@ -38,30 +38,36 @@ const Horoscope = () => {
           }
           loadHoroscope();
         }
-      }, [isLoading, results]);
+    }, [isLoading, results]);
+    
+    if (isLoading) {
+    return <span>Loading...</span>;
+    }
 
     return (
         <div>
-            <h1>Horóscopo</h1>
+            <h1 style={{marginLeft: '15px', color: '#082032'}}>Horóscopo</h1>
             
             <ul style={{padding: '0'}}>
                 {signos.map((e) => (
                     <>
-                <li style={{width: '100%'}}>{horoscopo[e].nombre}<br />
-                Amor: {horoscopo[e].amor}<br />
-                Dinero: {horoscopo[e].dinero}<br />
-                Salud: {horoscopo[e].salud}<br />
+                <li style={{width: '100%', margin: '20px 0', display: 'flex', justifyContent: 'space-around'}}>
+                    <div style={{width: '10%', marginLeft: '10px', marginTop: '45px'}}>
+                    <img src={`./horoscope-images/${e}.png`} alt={e} style={{width:'100%', maxHeight: '100px', display: 'inline-block'}} />
+                    </div>
+                    <div style={{width: '80%'}}>
+                <p style={{display: 'inline-block', backgroundColor: '#EEE', padding: '15px', color: '#082032'}}>
+                Amor: {results[e].amor}<br /><br />
+                Dinero: {results[e].dinero}<br /><br />
+                Salud: {results[e].salud}<br />
+                </p>
+                </div>
                 </li>
                 
                 </>
                 ))}
                 
             </ul>
-            {/* <HoroscList aries={results.aries} /> */}
-            {/* <h2>{signos.map((e) => (results[e].amor))}</h2> */}
-            {/* <ul>{results.horoscopo.map((e, i) => (
-                <li>Hola</li>  ))}
-            </ul> */}
         </div>
     )
 }

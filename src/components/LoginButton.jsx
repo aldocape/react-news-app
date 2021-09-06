@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp';
 import { Button, withStyles } from "@material-ui/core";
 
@@ -9,6 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { blue } from '@material-ui/core/colors';
+import { NewsContext } from '../context/NewsContext';
 
 import login from '../services/getDB';
 
@@ -23,7 +24,8 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 
 const LoginButton = (props) => {
-  const {userData, setuserData} = props;
+  // const {userData, setuserData} = props;
+  const {userContext, setUserContext} = useContext(NewsContext);
 
   const [open, setOpen] = useState(false);
 
@@ -36,11 +38,20 @@ const LoginButton = (props) => {
   };
   
     return (
-    (userData)?<><div style={{marginRight: '15px'}}>Hola {userData.nombre_apellido} !</div><ColorButton variant="contained" disableElevation color="primary" onClick={() => {setuserData(null)}} >
+    (userContext)?<>
+    <div style={{marginRight: '15px'}}>
+      Hola {userContext.nombre_apellido} !
+    </div>
+    <ColorButton variant="contained" 
+    disableElevation color="primary" 
+    onClick={() => {setUserContext(null)}} >
     Cerrar sesión
-  </ColorButton></>:(
+    </ColorButton></>:(
     <>
-    <ColorButton variant="contained" disableElevation color="primary" endIcon={<AccountCircleSharpIcon />} onClick={handleClickOpen}>
+    <ColorButton variant="contained" 
+    disableElevation color="primary" 
+    endIcon={<AccountCircleSharpIcon />} 
+    onClick={handleClickOpen}>
       Login
     </ColorButton>
 
@@ -59,7 +70,6 @@ const LoginButton = (props) => {
           fullWidth
         />
         <TextField
-          autoFocus
           margin="dense"
           id="pass"
           label="Password"
@@ -73,7 +83,7 @@ const LoginButton = (props) => {
           const userPass = document.getElementById('pass').value;
           const user = login(userName, userPass);
           alert('El usuario ha iniciado sesión correctamente!!\nBienvenido a nuestro contenido exclusivo!!');
-          setuserData(user);
+          setUserContext(user);
           
           handleClose();}} 
           color="primary">

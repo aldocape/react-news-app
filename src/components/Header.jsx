@@ -86,12 +86,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
   const classes = useStyles();
-  const {currentSearch, setcurrentSearch, userData, setuserData, open, handleDrawerOpen} = props;
+
+  const {currentSearch, setcurrentSearch, open, handleDrawerOpen} = props;
 
   return (
     <header className="App-header">
       
-        <AppBar position="fixed" color="primary" className={clsx(classes.appBar, { [classes.appBarShift]: open  })} >
+        <AppBar position="fixed" color="primary" 
+          className={clsx(classes.appBar, { [classes.appBarShift]: open  })} >
           <Toolbar>
             <IconButton
               color="inherit"
@@ -123,7 +125,7 @@ export default function Header(props) {
               />
               
             </div>
-            <LoginButton userData={userData} setuserData={setuserData} />
+            <LoginButton />
             
           </Toolbar>
         </AppBar>

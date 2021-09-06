@@ -26,12 +26,13 @@ a {
 div.container {
   background-color: rgb(245, 245, 245);
   display: flex;
+  justify-content: space-between;
   /* padding-top: 25px; */
 }
 
 ul.newsList {
   padding-top: 110px;
-  width: calc(100vw - 350px);
+  /* width: calc(100vw - 350px); */
 }
 
 .formContainer {
@@ -39,7 +40,7 @@ ul.newsList {
   z-index: 3;
   background-color: rgb(245, 245, 245);
   padding-bottom: 15px;
-  padding-top: 5px;
+  padding-top: 15px;
 }
 
 @media (max-width: 940px) {
@@ -54,7 +55,7 @@ ul.newsList {
 
 @media (min-width: 941px) {
   .formContainer {
-    width: calc(100% - 320px);
+    width: calc(100% - 257px);
   }
 }
 

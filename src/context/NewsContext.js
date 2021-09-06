@@ -3,10 +3,10 @@ import React, { createContext, useState } from "react";
 export const NewsContext = createContext();
 
 export const NewsContextProvider = (props) => {
-  const [newsContext, setNewsContext] = useState({ newsList: [] });
+  const [userContext, setUserContext] = useState(null);
 
   return (
-    <NewsContext.Provider value={{ newsContext, setNewsContext }}>
+    <NewsContext.Provider value={{ userContext, setUserContext }}>
       {props.children}
     </NewsContext.Provider>
   );

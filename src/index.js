@@ -10,7 +10,7 @@ import { NewsContextProvider } from "./context/NewsContext";
 
 ReactDOM.render(
   // <React.StrictMode>
-  <NewsContextProvider value={{ newsList: [] }}>
+  <NewsContextProvider>
     {/* <QueryClientProvider client={queryClient}> */}
     <App />
     {/* </QueryClientProvider> */}

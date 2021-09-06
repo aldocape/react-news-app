@@ -1,9 +1,9 @@
 import "./App.css";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { getNews } from "./services/getNews";
-// import { NewsContext } from './context/NewsContext';
+import { NewsContext } from './context/NewsContext';
 
 import clsx from 'clsx';
 
@@ -52,7 +52,7 @@ const App = () => {
     const [selectedDateTo, setSelectedDateTo] = useState(new Date());
     const [currentSearch, setcurrentSearch] = useState("Argentina");
     
-    const [userData, setuserData] = useState(null);
+    const { userContext } = useContext(NewsContext);
   
     useEffect(() => {
       if (isLoading) {
@@ -70,7 +70,7 @@ const App = () => {
           // } else {
           //   alert('Error al buscar los datos');
           // }
-          console.log(res);
+          
           if (res.message) {
             if(res.message === "You have exceeded the DAILY quota for requests on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/contextualwebsearch/api/web-search") {
               setNewsList(res)
@@ -92,8 +92,6 @@ const App = () => {
       setOpen(false);
     };
 
-    // const newsContext = useContext(NewsContext);
-
     return (
       <Router>
         <div className={classes.root}>
@@ -102,9 +100,6 @@ const App = () => {
             handleDrawerOpen={handleDrawerOpen}
             currentSearch={currentSearch}
             setcurrentSearch={setcurrentSearch}
-            userData={userData}
-            setuserData={setuserData}
-            
           />
           <DrawerComp 
             className={classes.drawer} 
@@ -129,7 +124,7 @@ const App = () => {
                 <Route path="/news/:newsId">
                   <div className="container">
                       <div className="leftPanel">
-                          <News currentSearch={currentSearch} />
+                          <News newsList={newsList} currentSearch={currentSearch} isLoading={isLoading} />
                       </div>
                   </div>
                 </Route>
@@ -174,14 +169,15 @@ const App = () => {
                         <div className="leftPanel">
                             
                             <Selectors newsList={newsList} setNewsList={setNewsList} isLoading={isLoading} setisLoading={setisLoading} selectedDateFrom={selectedDateFrom} setSelectedDateFrom={setSelectedDateFrom} selectedDateTo={selectedDateTo} setSelectedDateTo={setSelectedDateTo} />
-                            <Home newsList={newsList} selectedDateFrom={selectedDateFrom} setSelectedDateFrom={setSelectedDateFrom} selectedDateTo={selectedDateTo} setSelectedDateTo={setSelectedDateTo} currentSearch={currentSearch} />
+                            <Home newsList={newsList} isLoading={isLoading} />
 
                         </div>
+                        {userContext?"":
                         <div className="rightPanel">
                           <Hidden smDown>
                             <Banners />
                           </Hidden>
-                        </div>
+                        </div>}
                     </div>
                 </Route>
               </Switch>

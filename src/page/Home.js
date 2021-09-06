@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
     [theme.breakpoints.up("md")]: {
-      maxWidth: 297,
+      maxWidth: 236,
     },
     // height: 450,
     // overflow: "hidden",
@@ -40,16 +40,12 @@ function ordenarFecha(fecha) {
 }
 
 export default function Home(props) {
-  const { newsList } = props;
+  const { newsList, isLoading } = props;
   const classes = useStyles();
 
-  // if (isLoading) {
-  //   return <span>Loading...</span>;
-  // }
-
-  // if (isError) {
-  //   return <span>Error: {error.message}</span>;
-  // }
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
 
   return newsList.message ===
     "You have exceeded the DAILY quota for requests on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/contextualwebsearch/api/web-search" ? (
